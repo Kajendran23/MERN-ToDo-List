@@ -21,7 +21,7 @@ function App() {
       title,
     });
     setTitle("");
-    fetchTasks("");
+    fetchTasks();
   };
   const deleteTask = async (id) => {
     await axios.delete(
