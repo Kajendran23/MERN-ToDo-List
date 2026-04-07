@@ -7,7 +7,9 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
   const fetchTasks = async () => {
-    const response = await axios.get("http://localhost:5000/api/tasks/all");
+    const response = await axios.get(
+      "https://mern-todo-list-80dd.onrender.com/api/tasks/all",
+    );
     setTasks(response.data);
   };
   useEffect(() => {
@@ -15,18 +17,25 @@ function App() {
   }, []);
   const addTask = async () => {
     if (!title) return;
-    await axios.post("http://localhost:5000/api/tasks/add", { title });
+    await axios.post("https://mern-todo-list-80dd.onrender.com/api/tasks/add", {
+      title,
+    });
     setTitle("");
     fetchTasks("");
   };
   const deleteTask = async (id) => {
-    await axios.delete(`http://localhost:5000/api/tasks/delete/${id}`);
+    await axios.delete(
+      `https://mern-todo-list-80dd.onrender.com/api/tasks/delete/${id}`,
+    );
     fetchTasks();
   };
   const toggleComplete = async (id, status) => {
-    await axios.put(`http://localhost:5000/api/tasks/update/${id}`, {
-      completed: !status,
-    });
+    await axios.put(
+      `https://mern-todo-list-80dd.onrender.com/api/tasks/update/${id}`,
+      {
+        completed: !status,
+      },
+    );
     fetchTasks("");
   };
   return (
